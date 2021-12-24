@@ -1,0 +1,42 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<br><br>
+<div class="container-fluid"style="background-image:url('https://media.istockphoto.com/photos/suburban-homes-aerial-southern-california-picture-id1310364834?b=1&k=20&m=1310364834&s=170667a&w=0&h=5amGVZUGXDNM04X4SAMjCrRX1tupxsjs7cA3YEGT41E=');background-size: cover; font-family: 'Cookie', cursive;font-size: 2.0em;">
+        <!-- Empty div -->
+    <div class="col-md-4"></div>
+    <div class="col-md-6"style="margin-left:25%"><br>
+      {% if form.errors %}
+        <p> Please check your input </p>
+      {% endif %}
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="text-center"><strong>SIGN UP</strong></h3>
+        </div>
+        <div class="panel-body">
+
+          <form  action="/accounts/register/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="form-group">
+              <input type="submit" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm" value="Sign Up">
+            </div>
+
+            <input type="hidden" name="next" value="{{next}}">
+
+          </form>
+          <p>Have an account? Sign in below</p>
+          <button class="btn btn-warning btn-sm"><a style="color:black;font-size: 1.5em;" href="/accounts/login/">Sign In</a></button>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+    </div>
+</div>
+
+{% endblock %}

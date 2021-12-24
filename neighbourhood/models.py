@@ -5,9 +5,9 @@ from django.db.models.deletion import CASCADE
 
 # Create your models here.
 class Profile(models.Model):
+    name = models.CharField(max_length=20,null=True,blank=True)
     prof_photo = CloudinaryField('image')
     bio = models.TextField(max_length=1000, blank=True, null=True)
-    name = models.TextField(max_length=20,null=True,blank=True)
     phone_number = models.CharField(max_length=10, blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
 
@@ -27,8 +27,10 @@ class Profile(models.Model):
 
 class Neighbourhood(models.Model):
     hood_name = models.CharField(max_length=20,blank=True,null=True)
-    occupants_count = models.IntegerField(default=0)
-
+    resident_count = models.IntegerField(default=0)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    created_on = models.DateTimeField(auto_now_add=True,null=True)
+    updated_on = models.DateTimeField(auto_now=True,null=True)
     
     def __str__(self):
         return self.hood_name
