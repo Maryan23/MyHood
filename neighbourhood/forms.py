@@ -5,4 +5,4 @@ from django import forms
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ('prof_photo','bio','name','phone_number','user')
+        fields = ('name','prof_photo','bio','phone_number','user')
