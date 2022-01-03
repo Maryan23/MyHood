@@ -1,26 +1,29 @@
-<nav style="font-family: 'Cookie', cursive;background-color: #50A2A7;"class="navbar navbar-default">
+<nav style="font-family:'Cookie', cursive;background-color: #48cae4;"class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <form style="margin-top: 1.0em"class="navbar-form navbar-right">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input style="color:black;font-size:1.3em;" type="text" class="form-control" placeholder="Search">
         </div>
         <a style="color:black;font-size:1.3em;" role="button"><span class="glyphicon glyphicon-search"></span></a>
       </form>
       {% if user.is_authenticated %}
-      <ul class="nav navbar-nav navbar-left">
+      <div class="col-md-4 navbar-nav navbar-center"style="margin-top: 0.8em">
+        <a style="color:black; margin-left: 8%;font-size: 30px;"class="nav-link" href="/"><strong>MY HOOD</strong><span class="sr-only">(current)</span></a>
+      </div>
+      <ul class="nav navbar-nav navbar-left"style="margin-left: 10%;">
         <li><a style="color:black;font-size:2em" href="/"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="dropdown">
           <a href="#" style="color:black;font-size:2em"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a style="color:black;font-size:1.3em;" href="/profile">Profile</a></li>
+            <li><a style="color:black;font-size:1.3em;" href="#">Another action</a></li>
+            <li><a style="color:black;font-size:1.3em;" href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a style="color:black;font-size:1.3em;" href="/logout">Logout</a></li>
             {% else %}
-            <li><a href="/accounts/login">LOGIN</a></li>
+            <li><a style="color:black;font-size:1.3em;" href="/accounts/login">LOGIN</a></li>
           </ul>
         </li>
       </ul>

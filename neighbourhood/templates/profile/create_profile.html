@@ -14,12 +14,12 @@
           </div>
           <div class="panel-body">
   
-            <form  action="{%url 'create_profile'%}" method="post">
+            <form  action="{%url 'create_profile'%}" method="post"enctype="multipart/form-data">
               {% csrf_token %}
               {% bootstrap_form form%}
   
               <div class="form-group">
-                <input type="submit" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm" value="Sign In">
+                <input type="submit" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm" value="Create Profile">
               </div>
     
             </form>
