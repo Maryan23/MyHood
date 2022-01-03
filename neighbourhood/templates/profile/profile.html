@@ -27,11 +27,16 @@
         </div>
         <div class="col-md-4">
             {% if request.user is user %}  
-              <a href="{%url 'update_profile' user.id %}" class="btn btn-warning btn-sm">
+              <a href="{%url 'update_profile' user.id %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
                 Edit Profile
               </a>
             {% endif %}
       </div>
+      <div class="col-md-4">  
+          <a href="{%url 'create_hood' %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
+            Create Hood
+          </a>
+  </div>
 </div>
 
 

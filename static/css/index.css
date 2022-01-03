@@ -1,0 +1,19 @@
+#hoods{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 0 5%;
+  }
+  .hoods , .titles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    padding-bottom: 3rem;
+  }
+  .title{
+    font-size:1.6rem ;
+    margin-right: -5rem;
+    font-weight: 900;
+  }

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm,UpdateProfileForm
+from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm
 from django.http import HttpResponseRedirect, Http404
 from . models import Profile,Neighbourhood
 from django.contrib.auth.models import User
@@ -47,3 +47,27 @@ def update_profile(request,id):
                 return redirect('profile') 
             
     return render(request, 'profile/update_profile.html', {"form":form})
+
+@login_required(login_url='/accounts/login/')
+def create_hood(request):
+    current_user = request.user
+    title = 'Create Hood'
+
+    if request.method == 'POST':
+        hood_form = CreateHoodForm(request.POST, request.FILES)
+        if hood_form.is_valid():
+            hood = hood_form.save(commit=False)
+            hood.user = current_user
+            hood.save()
+        return HttpResponseRedirect('/hoods')
+
+    else:
+        hood_form = CreateHoodForm()
+    return render(request, 'hood/create_hood.html', {"hood_form": hood_form, "title": title})
+
+@login_required(login_url='/accounts/login/')
+def hoods(request):
+    hood = Neighbourhood.objects.all().order_by('-id')
+    
+    return render(request,'hood/hood.html',{'hood':hood})
+    

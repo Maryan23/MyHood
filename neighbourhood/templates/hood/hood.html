@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div id="hoods">
+    {% if hood %}
+      <div class="titles">
+        <p class="image"></p>
+        <p class="title">Hood Name</p>
+        <p class="title ">Description</p>
+        <p class="title ">Number of Residents</p>
+        <p class="button"></p>
+
+      </div>
+      {% for hood in hood %}
+      <div class="hoods">
+        <img src="{{hood.hood_image.url}}"class="image"height="60px"width="60px"style="border-radius:50%">
+        <p class="name">{{hood.hood_name}}</p>
+        <p class="description">{{hood.description}}</p>
+        <p class="residents">{{hood.resident_count}}</p>
+        <button class="btn btn-warning btn-sm"style="color:black;font-size:0.9em;" href="/">Join Hood</button>
+    </div>
+      {% endfor %}
+      {%else%}
+      <div class="alert alert-secondary">No Hoods created yet</div>
+      {%endif%}
+    </div>
+  </div>
+
+{% endblock %}
