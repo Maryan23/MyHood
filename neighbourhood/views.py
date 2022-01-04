@@ -70,4 +70,9 @@ def hoods(request):
     hood = Neighbourhood.objects.all().order_by('-id')
     
     return render(request,'hood/hood.html',{'hood':hood})
-    
+
+@login_required(login_url='/accounts/login/')
+def specific_hood(request,hood_name):
+    hood = Neighbourhood.objects.get(hood_name=hood_name)
+    return render(request,'hood/specific_hood.html',{'hood':hood})
+

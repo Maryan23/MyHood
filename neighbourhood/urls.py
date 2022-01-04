@@ -8,5 +8,7 @@ urlpatterns=[
     path('create_profile/',views.create_profile,name = 'create_profile'),
     path('update_profile/<int:id>',views.update_profile, name='update_profile'),
     path('create_hood/',views.create_hood,name = 'create_hood'),
-    path('hoods',views.hoods,name='hoods')
+    path('hoods',views.hoods,name='hoods'),
+    path('hood/<str:hood_name>',views.specific_hood,name='specific_hood')
+
 ]
