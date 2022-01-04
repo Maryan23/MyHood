@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container-fluid">
-      <div class="hood">
-        <img src="{{hood.hood_image.url}}"class="image"height="60px"width="60px"style="border-radius:50%">
-        <p class="name">{{hood.hood_name}}</p>
-        <p class="description">{{hood.description}}</p>
-        <p class="residents">{{hood.resident_count}}</p>
+<div class="container">
+      <div class="single_hood">
+        <div class="col-md-12">
+          <img src="{{hood.hood_image.url}}"class="hood-image"height="300px"width="300px"style="border-radius:70%;"><br><br>
+        </div>
+        <div class="col-md-12">
+          <p class="hood-name">{{hood.hood_name}}</p>
+        </div>
+         <p class="hood-description">{{hood.description}}</p>
+        <p class="hood-residents">Number of Residents: {{hood.resident_count}}</p>
     </div>
 </div>
 {% endblock %}

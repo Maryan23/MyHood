@@ -20,3 +20,20 @@
   .image{
     margin-top: -1.5em;
   }
+  .hood-image{
+    margin-left: 36%;
+  }
+  .hood-name{
+    margin-left: 38%;
+    font-size: 4em;
+    font-family:'Cookie', cursive;
+  }
+  .hood-description{
+    margin-left: 40%;
+    font-size: 1.6em;
+  }
+  .hood-residents{
+    margin-left: 40%;
+    font-size: 1.5em;
+    font-style:oblique;
+  }
