@@ -11,6 +11,7 @@ urlpatterns=[
     path('hoods',views.hoods,name='hoods'),
     path('hood/<str:hood_name>',views.specific_hood,name='specific_hood'),
     path('join_hood/<int:id>', views.join_hood, name='join_hood'),
-    path('leave_hood/<int:id>',views.leave_hood,name='leave_hood')
+    path('leave_hood/<int:id>',views.leave_hood,name='leave_hood'),
+    path('create_business/',views.create_business,name = 'create_business'),
 
 ]

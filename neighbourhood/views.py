@@ -108,7 +108,7 @@ def create_business(request):
             biz = biz_form.save(commit=False)
             biz.user = current_user
             biz.save()
-        return HttpResponseRedirect('/specific_hood')
+        return HttpResponseRedirect('/hoods')
 
     else:
         biz_form = BusinessForm()
