@@ -1,17 +1,19 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm
 from django.http import HttpResponseRedirect, Http404
 from . models import Profile,Neighbourhood
 from django.contrib.auth.models import User
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 
 # Create your views here.
+@csrf_exempt
 def index(request):    
     return render(request,'index.html')
 
+@csrf_exempt
 @login_required(login_url='/accounts/login/')
 def create_profile(request):
     current_user = request.user
@@ -27,6 +29,9 @@ def create_profile(request):
     else:
         form = ProfileForm()
     return render(request, 'profile/create_profile.html', {"form": form, "title": title})
+
+
+
 @login_required(login_url='/accounts/login/')
 def user_profile(request):
     current_user = request.user
@@ -76,3 +81,15 @@ def specific_hood(request,hood_name):
     hood = Neighbourhood.objects.get(hood_name=hood_name)
     return render(request,'hood/specific_hood.html',{'hood':hood})
 
+@login_required(login_url='/accounts/login/')
+def join_hood(request,hood_name):
+    neighbourhood = get_object_or_404(Neighbourhood, hood_name=hood_name)
+    request.user.profile.neighbourhood = neighbourhood
+    request.user.profile.neighbourhood.save()
+    return redirect('hoods')
+
+# def join_hood(request, name):
+#     neighbourhood = get_object_or_404(Neighborhood, name=name)
+#     request.user.profile.neighbourhood = neighbourhood
+#     request.user.profile.save()
+#     return redirect('hood')

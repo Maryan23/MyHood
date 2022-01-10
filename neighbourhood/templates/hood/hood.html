@@ -17,8 +17,12 @@
         <a href="{%url 'specific_hood' hood.hood_name%}"><p class="name">{{hood.hood_name}}</p></a>
         <p class="description">{{hood.description}}</p>
         <p class="residents">{{hood.resident_count}}</p>
-        <button class="btn btn-warning btn-sm"style="color:black;font-size:0.8em;margin-top:-1.8em;" href="/">Join Hood</button>
-    </div>
+        {% if request.user.profile.neighbourhood == hood %}
+        <a href="{% url 'leave_hood' hood.hood_name %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>
+        {% elif not request.user.profile.neighbourhood %}
+        <a href="{% url 'join_hood' hood.hood_name %}" class="btn btn-primary btn-sm">Join Hood</a>
+        {% endif %}  
+      </div>
       {% endfor %}
       {%else%}
       <div class="alert alert-secondary">No Hoods created yet</div>
