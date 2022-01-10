@@ -69,3 +69,27 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
+class Business(models.Model):
+    business_name = models.CharField(max_length=100)
+    business_logo = CloudinaryField('logo')
+    business_contact = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    location = models.ForeignKey(Location,on_delete=models.CASCADE, null=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return self.business_name
+
+    def create_business(self):
+        self.save()
+
+    def update_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    def search_business(cls,business_id):
+        biz = cls.objects.filter(business_id=business_id)
+        return biz
