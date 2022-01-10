@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container-fluid">
     <div id="hoods">
-    {% if hood %}
+    {% if hoods %}
       <div class="titles">
         <p class="image"></p>
         <p class="title">Hood Name</p>
@@ -11,22 +11,24 @@
         <p class="button"></p>
 
       </div>
-      {% for hood in hood %}
+      {% for hood in hoods %}
       <div class="hoods">
         <img src="{{hood.hood_image.url}}"class="image"height="60px"width="60px"style="border-radius:50%">
         <a href="{%url 'specific_hood' hood.hood_name%}"><p class="name">{{hood.hood_name}}</p></a>
         <p class="description">{{hood.description}}</p>
         <p class="residents">{{hood.resident_count}}</p>
+        <p>{{hood.members.count}} Member{{hood.members.count|pluralize}}</p>
         {% if request.user.profile.neighbourhood == hood %}
-        <a href="{% url 'leave_hood' hood.hood_name %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>
+        <a href="{% url 'leave_hood' hoods.id %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>
         {% elif not request.user.profile.neighbourhood %}
-        <a href="{% url 'join_hood' hood.hood_name %}" class="btn btn-primary btn-sm">Join Hood</a>
+        <a href="{% url 'specific_hood' hood.hood_name %}" class="btn btn-warning btn-sm">Join Hood</a>
         {% endif %}  
       </div>
       {% endfor %}
       {%else%}
-      <div class="alert alert-secondary">No Hoods created yet</div>
+      <div class="alert alert-danger">No Neighbourhoods Created Yet!!<br>Head over to your profile to create one.</div>
       {%endif%}
+
     </div>
   </div>
 

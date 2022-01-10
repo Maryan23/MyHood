@@ -53,7 +53,7 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=10, blank=True, null=True)
     location = models.ForeignKey(Location,on_delete=models.CASCADE, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True,related_name='profile')
-    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, related_name='occupants', blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 

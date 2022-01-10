@@ -33,11 +33,13 @@ def create_profile(request):
 
 
 @login_required(login_url='/accounts/login/')
-def user_profile(request):
+def profile(request):
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
+    neighbourhood = Neighbourhood.objects.all()
 
-    return render(request,"profile/profile.html",{'profile':profile})
+
+    return render(request,"profile/profile.html",{'profile':profile,'neighbourhood':neighbourhood})
 
 def update_profile(request,id):
     user = User.objects.get(id=id)
@@ -72,24 +74,24 @@ def create_hood(request):
 
 @login_required(login_url='/accounts/login/')
 def hoods(request):
-    hood = Neighbourhood.objects.all().order_by('-id')
-    
-    return render(request,'hood/hood.html',{'hood':hood})
+    hoods = Neighbourhood.objects.all().order_by('-id')
+    return render(request,'hood/hood.html',{'hoods':hoods})
 
 @login_required(login_url='/accounts/login/')
 def specific_hood(request,hood_name):
-    hood = Neighbourhood.objects.get(hood_name=hood_name)
-    return render(request,'hood/specific_hood.html',{'hood':hood})
+    hoods = Neighbourhood.objects.get(hood_name=hood_name)
+    return render(request,'hood/specific_hood.html',{'hoods':hoods})
 
 @login_required(login_url='/accounts/login/')
-def join_hood(request,hood_name):
-    neighbourhood = get_object_or_404(Neighbourhood, hood_name=hood_name)
-    request.user.profile.neighbourhood = neighbourhood
-    request.user.profile.neighbourhood.save()
+def join_hood(request,id):
+    neighbourhood = Neighbourhood.objects.get(id=id)
+    current_user = request.user
+    current_user.profile.neighbourhood = neighbourhood
+    current_user.profile.save()
     return redirect('hoods')
 
-# def join_hood(request, name):
-#     neighbourhood = get_object_or_404(Neighborhood, name=name)
-#     request.user.profile.neighbourhood = neighbourhood
-#     request.user.profile.save()
-#     return redirect('hood')
+def leave_hood(request, id):
+    hood = get_object_or_404(Neighbourhood, id=id)
+    request.user.profile.neighbourhood = None
+    request.user.profile.save()
+    return redirect('hoods')
