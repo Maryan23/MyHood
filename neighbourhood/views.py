@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm
+from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm,BusinessForm
 from django.http import HttpResponseRedirect, Http404
 from . models import Profile,Neighbourhood
 from django.contrib.auth.models import User
@@ -97,5 +97,21 @@ def leave_hood(request, id):
     request.user.profile.save()
     return redirect('hoods')
 
-# @login_required(login_url='/accounts/login/')
-# def 
+@login_required(login_url='/accounts/login/')
+def create_business(request):
+    current_user = request.user
+    title = 'Create Business'
+
+    if request.method == 'POST':
+        biz_form = BusinessForm(request.POST, request.FILES)
+        if biz_form.is_valid():
+            biz = biz_form.save(commit=False)
+            biz.user = current_user
+            biz.save()
+        return HttpResponseRedirect('/specific_hood')
+
+    else:
+        biz_form = BusinessForm()
+    return render(request, 'business/create_biz.html', {"biz_form": biz_form, "title": title})
+
+
