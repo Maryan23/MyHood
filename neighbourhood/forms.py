@@ -1,4 +1,4 @@
-from .models import Neighbourhood, Profile
+from .models import Neighbourhood, Profile,Business
 from django.forms import ModelForm
 from django import forms
 
@@ -16,3 +16,8 @@ class CreateHoodForm(forms.ModelForm):
     class Meta:
         model = Neighbourhood
         fields = ('hood_image','hood_name','description')
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = ('business_name','business_logo','business_contact')

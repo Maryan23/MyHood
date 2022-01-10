@@ -90,8 +90,12 @@ def join_hood(request,id):
     current_user.profile.save()
     return redirect('hoods')
 
+@login_required(login_url='/accounts/login/')
 def leave_hood(request, id):
     hood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = None
     request.user.profile.save()
     return redirect('hoods')
+
+# @login_required(login_url='/accounts/login/')
+# def 
