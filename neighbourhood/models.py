@@ -93,3 +93,17 @@ class Business(models.Model):
     def search_business(cls,business_id):
         biz = cls.objects.filter(business_id=business_id)
         return biz
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField(max_length=300)
+    hood = models.ForeignKey(Neighbourhood, blank=True, on_delete=models.CASCADE)
+    title = models.CharField(max_length=65)
+
+    def __str__(self):
+        return self.title
+
+    @classmethod
+    def get_post(cls, id):
+        post = Post.objects.filter(hood__pk=id)
+        return post

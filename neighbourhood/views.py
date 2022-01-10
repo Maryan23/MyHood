@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
+import neighbourhood
 from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm,BusinessForm
 from django.http import HttpResponseRedirect, Http404
-from . models import Profile,Neighbourhood
+from . models import Business, Profile,Neighbourhood
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 
@@ -80,7 +82,8 @@ def hoods(request):
 @login_required(login_url='/accounts/login/')
 def specific_hood(request,hood_name):
     hoods = Neighbourhood.objects.get(hood_name=hood_name)
-    return render(request,'hood/specific_hood.html',{'hoods':hoods})
+    business = Business.objects.filter(bus = hood_name).first()
+    return render(request,'hood/specific_hood.html',{'hoods':hoods,'business':business})
 
 @login_required(login_url='/accounts/login/')
 def join_hood(request,id):
