@@ -29,7 +29,7 @@ git@github.com:Maryan23/MyHood.git
 ```
 ##### Navigate into the folder and install requirements 
  ```bash
-cd Laurels
+cd My Hood
  - pip install -r requirements.txt
 ```
 ##### Install and activate Virtual 
@@ -44,7 +44,7 @@ cd Laurels
 ##### Setup Database 
   SetUp your database User,Password, Host then make migrate
  ```bash
-python manage.py makemigrations photos
+python manage.py makemigrations
  ```
  Now Migrate
  ```bash
