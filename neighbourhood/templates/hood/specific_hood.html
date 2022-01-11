@@ -30,10 +30,15 @@
   <div class="container bg-white hoode">
     <div class="row">
         <div class="col-md-6">
-
+          <form style="margin-top: 1.0em;"method="get" action="{% url 'search' %}"class="navbar-form navbar-right">
+            <div class="form-group">
+              <input style="color:black;font-size:0.8em;" type="text" class="form-control" placeholder="Search for business" >
+              <span class="glyphicon glyphicon-search"></span>
+            </div>
+          </form>
         </div>
         <div class="col-md-6">
-          
+
         </div>
     </div>
 </div>

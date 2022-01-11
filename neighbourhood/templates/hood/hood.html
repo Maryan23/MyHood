@@ -10,7 +10,7 @@
             <img src="{{hood.hood_image.url}}"class="image"height="100px"width="100px"style="border-radius:50%">
           </a>
             <div class="card-body">
-              <a href="{%url 'specific_hood' neighbourhood.id %}"><p class="name">{{hood.hood_name}}</p></a>
+              <a href="{%url 'specific_hood' hood.id %}"><p class="name">{{hood.hood_name}}</p></a>
               <p class="description">{{hood.description}}</p>
               <p class="residents">{{hood.members.count}} Member{{hood.members.count|pluralize}}</p>
               {% if request.user.profile.neighbourhood == hood %}

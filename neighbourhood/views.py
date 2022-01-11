@@ -134,3 +134,14 @@ def create_post(request):
         p_form = PostForm()
     return render(request, 'post/create_post.html', {"p_form": p_form, "title": title})
 
+@login_required(login_url="/accounts/login/")
+def search(request):
+    if 'search_term' in request.GET and request.GET["search_term"]:
+        search_term = request.GET.get("search_term")
+        searched_businesses = Business.objects.filter(business_name__icontains=search_term)
+        message = f"Search For: {search_term}"
+
+        return render(request, "results.html", {"message": message, "searched_businesses": searched_businesses})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, "results.html", {"message": message})
