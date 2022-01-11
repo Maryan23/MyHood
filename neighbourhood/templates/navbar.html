@@ -7,7 +7,7 @@
       <img src="{{user.profile.prof_photo.url}}" alt="" style="border-radius: 40%; width:9em; height:7em;"> &nbsp; <span class="text-white">{{user.username|title}}</span>
       {% else %}
       <img src="https://media.istockphoto.com/photos/social-network-media-connections-picture-id1277785530?b=1&k=20&m=1277785530&s=170667a&w=0&h=b28MpQGnos0VfZrlIoRwJjthFZwYPr4av2Zu5j0dLNM="
-          class="card-img-top" alt="My profile picture" style="border-radius: 50%; width: 50%; height: auto;">
+          class="card-img-top" alt="My profile picture" style="border-radius: 40%; width:4em; height:5em;">
       {% endif %}
       </form>
     
@@ -27,7 +27,7 @@
             <li role="separator" class="divider"></li>
             <li><a style="color:black;font-size:1.3em;" href="/logout"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
             {% else %}
-            <li><a style="color:black;font-size:1.3em;" href="/accounts/login">LOGIN</a></li>
+            <li><a style="color:black;font-size:1.3em;margin-top: 1.4em" href="/accounts/login"><span class="glyphicon glyphicon-log-in">Login</span></a></li>
           </ul>
         </li>
       </ul>
