@@ -8,9 +8,8 @@
 https://jiraninext.herokuapp.com/
 
 ## Screenshots
-<img src="static/images/Screenshot from 2021-12-14 14-07-22.png">
-<img src="static/images/Screenshot from 2021-12-14 14-07-30.png">
-<img src="static/images/Screenshot from 2021-12-14 14-08-05.png">
+<img src="static/images/Screenshot from 2022-01-11 16-34-21.png">
+<img src="static/images/Screenshot from 2022-01-11 16-34-40.png">
 
 ## User Story 
 1. Sign in with the application to start using.
