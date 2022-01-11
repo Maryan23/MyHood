@@ -105,9 +105,9 @@ class Business(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     description = models.TextField(max_length=300)
-    hood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+    hood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.title
