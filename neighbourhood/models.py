@@ -23,7 +23,7 @@ class Location(models.Model):
 
 
 class Neighbourhood(models.Model):
-    hood_name = models.CharField(max_length=20,blank=True,null=True)
+    hood_name = models.CharField(max_length=20,blank=True,null=True,unique=True)
     hood_image = CloudinaryField('hood_image',null=True)
     description = models.TextField(null=True,max_length=200)
     resident_count = models.IntegerField(default=0)
@@ -31,6 +31,7 @@ class Neighbourhood(models.Model):
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
     location = models.ForeignKey(Location,on_delete=models.CASCADE, null=True)
+    help_line = models.CharField(max_length=20,null=True)
 
     
     def __str__(self):
@@ -98,8 +99,8 @@ class Business(models.Model):
         return business
 
     @classmethod
-    def get_business(cls,neighbourhood):
-        business = Business.objects.filter(neighbourhood=neighbourhood)
+    def get_business(cls,id):
+        business = Business.objects.filter(neighbourhood__pk = id)
         return business
 
 class Post(models.Model):

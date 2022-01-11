@@ -78,9 +78,9 @@ def hoods(request):
     return render(request,'hood/hood.html',{'hoods':hoods})
 
 @login_required(login_url='/accounts/login/')
-def specific_hood(request,hood_name):
-    hood = Neighbourhood.objects.get(hood_name=hood_name)
-    biznas = Business.get_business(hood)
+def specific_hood(request,id):
+    hood = Neighbourhood.objects.get(id=id)
+    biznas = Business.get_business(id)
     posts = Post.get_post(hood)
 
     return render(request,'hood/specific_hood.html',{'hood':hood,'biznas':biznas,'posts':posts})
