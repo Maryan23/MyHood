@@ -81,9 +81,9 @@ def hoods(request):
 
 @login_required(login_url='/accounts/login/')
 def specific_hood(request,hood_name):
-    hoods = Neighbourhood.objects.get(hood_name=hood_name)
-    business = Business.objects.filter(bus = hood_name).first()
-    return render(request,'hood/specific_hood.html',{'hoods':hoods,'business':business})
+    hood = Neighbourhood.objects.get(hood_name=hood_name)
+    biznas = Business.get_business(hood)
+    return render(request,'hood/specific_hood.html',{'hood':hood,'biznas':biznas})
 
 @login_required(login_url='/accounts/login/')
 def join_hood(request,id):
@@ -116,5 +116,4 @@ def create_business(request):
     else:
         biz_form = BusinessForm()
     return render(request, 'business/create_biz.html', {"biz_form": biz_form, "title": title})
-
 

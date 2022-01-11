@@ -3,19 +3,24 @@
 <div class="container">
       <div class="single_hood">
         <div class="col-md-12">
-          <img src="{{hoods.hood_image.url}}"class="hood-image"height="300px"width="300px"style="border-radius:70%;"><br><br>
+          <img src="{{hood.hood_image.url}}"class="hood-image"height="300px"width="300px"style="border-radius:70%;"><br><br>
         </div>
         <div class="col-md-12">
-          <p class="hood-name">{{hoods.hood_name}}</p>
+          <p class="hood-name">{{hood.hood_name}}</p>
         </div>
-         <p class="hood-description">{{hoods.description}}</p>
-        <p class="hood-residents">{{hoods.members.count}} Member{{hoods.members.count|pluralize}}</p>
+         <p class="hood-description">{{hood.description}}</p>
+        <p class="hood-residents">{{hood.members.count}} Member{{hoods.members.count|pluralize}}</p>
     </div>
 
     <div class="col-md-4">  
       <a href="{%url 'create_business' %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
         Create Hood
       </a>
-</div>
+    </div>
+    <div id="business">
+      {% for biz in biznas%}
+      {{biz.business_name}}
+      {% endfor %}
+    </div>
 </div>
 {% endblock %}

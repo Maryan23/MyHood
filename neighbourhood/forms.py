@@ -1,4 +1,4 @@
-from .models import Neighbourhood, Profile,Business
+from .models import Neighbourhood, Post, Profile,Business
 from django.forms import ModelForm
 from django import forms
 
@@ -21,3 +21,8 @@ class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         fields = ('business_name','business_logo','business_contact')
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['user','neighbourhood']

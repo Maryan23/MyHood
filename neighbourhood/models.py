@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+import neighbourhood
+
 # Create your models here.
 class Location(models.Model):
     name = models.CharField(max_length=20,null=True)
@@ -90,9 +92,15 @@ class Business(models.Model):
     def delete_business(self):
         self.delete()
 
-    def search_business(cls,business_id):
-        biz = cls.objects.filter(business_id=business_id)
-        return biz
+    @classmethod
+    def search_by_name(cls, search_term):
+        business = cls.objects.filter(business_name__icontains=search_term)
+        return business
+
+    @classmethod
+    def get_business(cls,neighbourhood):
+        business = Business.objects.filter(neighbourhood=neighbourhood)
+        return business
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
