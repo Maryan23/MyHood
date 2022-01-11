@@ -1,8 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-
-import neighbourhood
-from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm,BusinessForm
+from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm,BusinessForm,PostForm
 from django.http import HttpResponseRedirect, Http404
 from . models import Business, Profile,Neighbourhood
 from django.contrib.auth.models import User
@@ -116,4 +114,21 @@ def create_business(request):
     else:
         biz_form = BusinessForm()
     return render(request, 'business/create_biz.html', {"biz_form": biz_form, "title": title})
+
+@login_required(login_url='/accounts/login/')
+def create_post(request):
+    current_user = request.user
+    title = 'Write Post'
+
+    if request.method == 'POST':
+        p_form = PostForm(request.POST, request.FILES)
+        if p_form.is_valid():
+            post = p_form.save(commit=False)
+            post.user = current_user
+            post.save()
+        return HttpResponseRedirect('/hoods')
+
+    else:
+        p_form = PostForm()
+    return render(request, 'business/create_biz.html', {"p_form": p_form, "title": title})
 
