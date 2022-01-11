@@ -112,8 +112,8 @@ class Post(models.Model):
         return self.title
 
     @classmethod
-    def get_post(cls, id):
-        post = Post.objects.filter(hood__pk=id)
+    def get_post(cls, hood):
+        post = Post.objects.filter(hood=hood)
         return post
 
     def save_post(self):

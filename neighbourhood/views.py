@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm,UpdateProfileForm,CreateHoodForm,BusinessForm,PostForm
 from django.http import HttpResponseRedirect, Http404
-from . models import Business, Profile,Neighbourhood
+from . models import Business, Profile,Neighbourhood,Post
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 
@@ -81,7 +81,9 @@ def hoods(request):
 def specific_hood(request,hood_name):
     hood = Neighbourhood.objects.get(hood_name=hood_name)
     biznas = Business.get_business(hood)
-    return render(request,'hood/specific_hood.html',{'hood':hood,'biznas':biznas})
+    posts = Post.get_post(hood)
+
+    return render(request,'hood/specific_hood.html',{'hood':hood,'biznas':biznas,'posts':posts})
 
 @login_required(login_url='/accounts/login/')
 def join_hood(request,id):
@@ -123,9 +125,9 @@ def create_post(request):
     if request.method == 'POST':
         p_form = PostForm(request.POST, request.FILES)
         if p_form.is_valid():
-            post = p_form.save(commit=False)
-            post.user = current_user
-            post.save()
+            pos = p_form.save(commit=False)
+            pos.user = current_user
+            pos.save()
         return HttpResponseRedirect('/hoods')
 
     else:
