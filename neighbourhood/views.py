@@ -51,7 +51,7 @@ def update_profile(request,id):
                 
                 profile = form.save(commit=False)
                 profile.save()
-                return redirect('profile') 
+                return redirect('/profile') 
             
     return render(request, 'profile/update_profile.html', {"form":form})
 
