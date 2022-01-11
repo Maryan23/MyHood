@@ -130,5 +130,5 @@ def create_post(request):
 
     else:
         p_form = PostForm()
-    return render(request, 'business/create_biz.html', {"p_form": p_form, "title": title})
+    return render(request, 'post/create_post.html', {"p_form": p_form, "title": title})
 
