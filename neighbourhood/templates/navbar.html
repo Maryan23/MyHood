@@ -2,27 +2,30 @@
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form style="margin-top: 1.0em"class="navbar-form navbar-right">
-        <div class="form-group">
-          <input style="color:black;font-size:1.3em;" type="text" class="form-control" placeholder="Search">
-        </div>
-        <a style="color:black;font-size:1.3em;" role="button"><span class="glyphicon glyphicon-search"></span></a>
+      <form class="navbar-form navbar-right">
+        {% if user.is_authenticated %}
+      <img src="{{user.profile.prof_photo.url}}" alt="" style="border-radius: 40%; width:9em; height:7em;"> &nbsp; <span class="text-white">{{user.username|title}}</span>
+      {% else %}
+      <img src="https://media.istockphoto.com/photos/social-network-media-connections-picture-id1277785530?b=1&k=20&m=1277785530&s=170667a&w=0&h=b28MpQGnos0VfZrlIoRwJjthFZwYPr4av2Zu5j0dLNM="
+          class="card-img-top" alt="My profile picture" style="border-radius: 50%; width: 50%; height: auto;">
+      {% endif %}
       </form>
+    
       {% if user.is_authenticated %}
-      <div class="col-md-4 navbar-nav navbar-center"style="margin-top: 0.8em">
+      <div class="col-md-4 navbar-nav navbar-center"style="margin-top: 3.0em">
         <a style="color:black; margin-left: 8%;font-size: 30px;"class="nav-link" href="/"><strong>MY HOOD</strong><span class="sr-only">(current)</span></a>
       </div>
 
       <ul class="nav navbar-nav navbar-left"style="margin-left: 10%;">
-        <li><a style="color:black;font-size:2em" href="/"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li><a style="color:black;font-size:2em" href="/hoods"><span class="glyphicon glyphicon-globe"></span></a></li>
+        <li><a style="color:black;font-size:2em;margin-top: 1.4em" href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li><a style="color:black;font-size:2em;margin-top: 1.4em" href="/hoods"><span class="glyphicon glyphicon-globe"></span></a></li>
 
         <li class="dropdown">
-          <a href="#" style="color:black;font-size:2em"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></a>
+          <a href="#" style="color:black;font-size:2em;margin-top: 1.4em" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></a>
           <ul class="dropdown-menu">
             <li><a style="color:black;font-size:1.3em;" href="/profile">Profile</a></li>
             <li role="separator" class="divider"></li>
-            <li><a style="color:black;font-size:1.3em;" href="/logout">Logout</a></li>
+            <li><a style="color:black;font-size:1.3em;" href="/logout"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
             {% else %}
             <li><a style="color:black;font-size:1.3em;" href="/accounts/login">LOGIN</a></li>
           </ul>
