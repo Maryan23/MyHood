@@ -2,8 +2,6 @@
 ### 11th Jan. 2022
 ## Author 
 [Maryann Mwikali](https://github.com/Maryan23)
-# Description 
-
 ##  Live Link
 https://jiraninext.herokuapp.com/
 
